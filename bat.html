@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bat.Port</title>
+  <link rel="icon" type="image/png" href="bat-icon.jpeg">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-image: url('gotham-bg.jpeg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      animation: zoomBg 60s ease-in-out infinite alternate;
+      font-family: 'Segoe UI', sans-serif;
+      color: #FFD700;
+      overflow-x: hidden;
+    }
+
+    @keyframes zoomBg {
+      from { background-size: 100%; }
+      to { background-size: 110%; }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #000;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      border-bottom: 2px solid #FFD700;
+    }
+
+    nav button {
+      margin: 0 10px;
+      padding: 8px 16px;
+      background: #FFD700;
+      border: none;
+      border-radius: 20px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    nav button:hover {
+      background: #ffc400;
+      box-shadow: 0 0 10px #FFD700;
+    }
+
+    section {
+      min-height: 100vh;
+      padding-top: 60px;
+    }
+
+    .batman-container {
+      position: absolute;
+      top: 50%;
+      left: -300px;
+      transform: translateY(-50%) scale(1);
+      transition: all 2.5s ease;
+      z-index: 2;
+    }
+
+    .batman-container.move {
+      left: calc(100% - 300px);
+      transform: translateY(-50%) scale(1.2);
+    }
+
+    .batman-container img {
+      height: 500px;
+    }
+
+    .batman-info {
+      position: absolute;
+      top: 50%;
+      left: -400px;
+      transform: translateY(-50%);
+      max-width: 400px;
+      opacity: 0;
+      transition: all 2s ease-in-out;
+      z-index: 1;
+    }
+
+    .batman-info.show {
+      left: 50px;
+      opacity: 1;
+    }
+
+    .line {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-top: 30px;
+    }
+
+    .bat-section {
+      padding: 50px 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .arsenal-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto 60px auto;
+      color: #fff;
+    }
+
+    .arsenal-item img {
+      width: 400px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid #FFD700;
+    }
+
+    .arsenal-item.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .arsenal-text {
+      max-width: 500px;
+    }
+
+    .arsenal-text h3 {
+      font-size: 2rem;
+      color: #FFD700;
+      margin-bottom: 10px;
+    }
+
+    #herosiumBox video {
+      width: 100%;
+      max-width: 800px;
+      border: 2px solid #FFD700;
+      border-radius: 12px;
+    }
+
+    #batSignal {
+      width: 300px;
+      animation: signalGlow 2s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 15px #FFD700);
+      border-radius: 12px;
+      border: 2px solid #0c0c0c;
+    }
+
+    @keyframes signalGlow {
+      0% {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <button onclick="scrollToSection('home')">Home</button>
+    <button onclick="scrollToSection('arsenalBox')">The Bat</button>
+    <button onclick="scrollToSection('herosiumBox')">Herosium</button>
+    <button onclick="scrollToSection('enemiesBox')">Enemies</button>
+    <button onclick="scrollToSection('alertBox')">Alert</button>
+  </nav>
+
+  <section id="home">
+    <div class="batman-container" id="batmanBox">
+      <img src="mask.png" alt="Batman Mask">
+    </div>
+    <div class="batman-info" id="batInfo">
+      <h1>I’m Batman.</h1>
+      <p>The Dark Knight. Guardian of Gotham. Master of stealth, strategy, and silence.<br>When the city sleeps... I rise.</p>
+    </div>
+  </section>
+
+  <section id="arsenalBox">
+    <div class="line"><h1>My Arsenal</h1></div>
+    <div class="bat-section">
+      <div class="arsenal-item">
+        <img src="car.jpg" alt="Batcar">
+        <div class="arsenal-text">
+          <h3>BatCar</h3>
+          <p>The ultimate pursuit vehicle equipped with advanced defense and stealth tech.</p>
+        </div>
+      </div>
+      <div class="arsenal-item reverse">
+        <img src="jet.jpg" alt="Batjet">
+        <div class="arsenal-text">
+          <h3>BatJet</h3>
+          <p>Stealth air mobility with vertical takeoff and thermal cloaking tech.</p>
+        </div>
+      </div>
+      <div class="arsenal-item">
+        <img src="tool.jpg" alt="Batarang">
+        <div class="arsenal-text">
+          <h3>Batarang</h3>
+          <p>Batman’s iconic throwing weapon for precision takedowns.</p>
+        </div>
+      </div>
+      <div class="arsenal-item reverse">
+        <img src="suit.jpg" alt="BatSuit">
+        <div class="arsenal-text">
+          <h3>BatSuit</h3>
+          <p>Armor with night vision, bulletproof layers, and stealth design.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="herosiumBox">
+    <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+      <video controls autoplay muted loop>
+        <source src="fight.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <h2>Dark Knight</h2>
+      <p style="color:#FFD700;font-weight:bold;">When fear ruled the night... he ruled fear.</p>
+      <p>It was a stormy night in Gotham... Final move — Batman launched over Bane, mid-air spin, nerve strike. The beast fell. Gotham slept on. The Knight won again — alone.</p>
+    </div>
+  </section>
+
+  <section id="enemiesBox">
+    <div class="line"><h1>My Foes</h1></div>
+    <div class="bat-section">
+      <div class="arsenal-item">
+        <img src="joker.jpeg" alt="Joker">
+        <div class="arsenal-text">
+          <h3>Joker</h3>
+          <p>The clown prince of crime. Master of chaos and madness.</p>
+        </div>
+      </div>
+      <div class="arsenal-item reverse">
+        <img src="bane.jpeg" alt="Bane">
+        <div class="arsenal-text">
+          <h3>Bane</h3>
+          <p>Brute force and brainpower. One of Batman’s deadliest enemies.</p>
+        </div>
+      </div>
+      <div class="arsenal-item">
+        <img src="riddler.jpeg" alt="Riddler">
+        <div class="arsenal-text">
+          <h3>Riddler</h3>
+          <p>Puzzle-obsessed criminal who turns every crime into a game.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="alertBox">
+    <div class="line"><h1>Bat Signal Activated</h1></div>
+    <div class="bat-section" style="text-align: center;">
+      <img id="batSignal" src="signal.png" alt="Bat Signal">
+      <p class="alert-text">Trouble brews in Gotham.<br>When this light pierces the sky... I answer.</p>
+    </div>
+      <!-- Footer -->
+  <footer style="background-color: #0a0a0a; padding: 30px 20px; text-align: center; border-top: 2px solid #FFD700;">
+    <p style="color: #FFD700; font-size: 1.2rem; font-family: 'Segoe UI', sans-serif;">
+      © 2025 Bat.Land | Crafted with courage<br>
+      <span style="font-weight: bold; color: #faf208;">By Robin Girl</span>
+    </p>
+  </footer>
+
+  </section>
+
+  <script>
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+
+    window.onload = () => {
+      setTimeout(() => document.getElementById("batmanBox").classList.add("move"), 500);
+      setTimeout(() => document.getElementById("batInfo").classList.add("show"), 1500);
+    };
+  </script>
+</body>
+</html>
